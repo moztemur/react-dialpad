@@ -1,0 +1,39 @@
+{
+  "name": "react-dialpad",
+  "version": "0.0.1",
+  "author": "Mahmut Oztemur",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "demo": "webpack --config webpack.demo.config.js",
+    "prepublish": "npm run build",
+    "test": "mocha -w test/helpers/browser.js test/**/*.spec.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.10.4",
+    "babel-eslint": "^6.1.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-airbnb": "^2.2.3",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "chai": "^3.5.0",
+    "css-loader": "^0.28.0",
+    "enzyme": "^2.8.0",
+    "eslint": "^2.13.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "jsdom": "^9.12.0",
+    "mocha": "^3.2.0",
+    "node-sass": "^4.5.2",
+    "react": "^15.3.1",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.3.1",
+    "sass-loader": "^6.0.3",
+    "sinon": "^2.1.0",
+    "style-loader": "^0.16.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^2.4.2"
+  }
+}

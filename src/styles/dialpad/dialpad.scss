@@ -1,0 +1,41 @@
+.dialpad {
+    width: 300px;
+    height: 600px;
+
+    .display {
+      height: 20%;
+      width: 100%;
+      position: relative;
+
+      input {
+        width: 100%;
+        height: 100%;
+      }
+
+      .back-button {
+        position: absolute;
+        right: 0;
+      }
+    }
+
+    .button-set {
+      height: 80%;
+      width: 100%;
+
+      .dialpad-button {
+        width: 27%;
+        height: 25%;
+        outline: 1px solid;
+        float: left;
+        border-radius: 5px;
+
+        .value {
+          height: 50%;
+        }
+
+        .letters {
+          height: 50%;
+        }
+      }
+    }
+}

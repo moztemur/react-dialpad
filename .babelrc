@@ -1,0 +1,4 @@
+{
+  "presets": ["airbnb", "es2015", "stage-0", "react"],
+  "plugins": ["babel-plugin-add-module-exports"]
+}
