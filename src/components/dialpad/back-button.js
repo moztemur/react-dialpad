@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 
 class BackButton extends Component {
-  constructor() {
-    super();
-    this.onPressed = this.onPressed.bind(this);
-  }
+	constructor() {
+		super();
+		this.onPressed = this.onPressed.bind(this);
+	}
 
-  onPressed(value) {
-    const { onPressed } = this.props;
-    onPressed();
-  }
+	onPressed() {
+		const { onPressed } = this.props;
 
-  render() {
-    return (
-      <div className="back-button" onClick={this.onPressed}>
-        back
-      </div>
-    );
-  }
+		onPressed();
+	}
+
+	render() {
+		return (
+			<div
+				className="button goBack"
+				onClick={this.onPressed}>
+			</div>
+		);
+	}
 }
 
 export default BackButton;

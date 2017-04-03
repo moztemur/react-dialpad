@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var distPath = path.resolve(__dirname + '/dist');
-var libraryName = 'zipcode';
+var libraryName = 'react-dialpad';
 
 var config = {
   entry: [__dirname + '/src/index.js'],
@@ -14,8 +14,13 @@ var config = {
   },
   devtool: 'source-map',
   module: {
+    preLoaders: [{
+      test: /\.jsx?$/,
+      loader: 'eslint',
+      exclude: /node_modules/
+    }],
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loaders: ['babel-loader'],
       exclude: /node_modules/,
     }, {

@@ -1,41 +1,113 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700);
+$lightGray: #2D2D2D;
+$blue: #285EFA;
+$green: #3DE066;
+$red: #FA4A5D;
+$pulseDuration: 0.5s;
 .dialpad {
-    width: 300px;
-    height: 600px;
-
+    width: 100%;
+    height: 100%;
+    background-color: #232323;
+    font-family: Lato;
+    font-weight: 400;
+    letter-spacing: 1px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    box-shadow: 0 30px 35px -25px black;
     .display {
-      height: 20%;
-      width: 100%;
-      position: relative;
-
-      input {
         width: 100%;
-        height: 100%;
-      }
-
-      .back-button {
-        position: absolute;
-        right: 0;
-      }
+        height: 80px;
+        background-color: $lightGray;
+        margin-top: 40px;
+        input {
+            background-color: transparent;
+            width: 60%;
+            margin-left: 20%;
+            height: 80px;
+            border: none;
+            font-size: 30px;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 2px;
+            &:focus {
+                outline: none;
+            }
+        }
     }
-
-    .button-set {
-      height: 80%;
-      width: 100%;
-
-      .dialpad-button {
-        width: 27%;
-        height: 25%;
-        outline: 1px solid;
-        float: left;
-        border-radius: 5px;
-
-        .value {
-          height: 50%;
+    .buttons {
+        overflow: hidden;
+        width: 60%;
+        margin-left: 20%;
+        margin-top: 20px;
+        .button-spacer {
+            width: 60px;
+            margin: 10px calc(50% - 90px);
+            float: left;
         }
-
-        .letters {
-          height: 50%;
+				.button-double-spacer {
+            width: 120px;
+            margin: 10px calc(50% - 90px);
+            float: left;
         }
-      }
+        .button {
+            color: white;
+            font-size: 30px;
+            float: left;
+            background-color: $lightGray;
+            text-align: center;
+            width: 60px;
+            height: 56px;
+            border-radius: 100%;
+            margin: 10px 0px;
+            padding-top: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            &.clicked {
+                animation: pulse-gray linear $pulseDuration 1;
+            }
+            &:nth-child(3n-1) {
+                margin: 10px calc(50% - 90px);
+            }
+            &.astrisk {
+                padding-top: 17px;
+                height: 43px;
+            }
+            &.pound {
+                padding-top: 10px;
+                height: 50px;
+            }
+            .sub-dig {
+                font-size: 8px;
+                font-weight: 300;
+                position: relative;
+                top: -2px;
+            }
+            &.addPerson,
+            &.goBack {
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 55% auto;
+                margin-bottom: 25px;
+                box-shadow: 0px 25px 30px -15px black;
+            }
+            &.addPerson {
+                background-color: #285EFA;
+                background-image: url(http://s16.postimg.org/4u2rbu85t/add_Person.png);
+                &.clicked {
+                    animation: pulse-blue linear $pulseDuration 1;
+                }
+            }
+            &.goBack {
+                background-color: #FA4A5D;
+                background-image: url(http://s4.postimg.org/x6g6auu7d/back_Arrow.png);
+                &.clicked {
+                    animation: pulse-red linear $pulseDuration 1;
+                }
+            }
+        }
     }
 }
