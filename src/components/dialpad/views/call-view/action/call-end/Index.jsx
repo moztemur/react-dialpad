@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class BackButton extends Component {
+class CallEnd extends Component {
 	constructor() {
 		super();
 		this.onPressed = this.onPressed.bind(this);
@@ -15,11 +15,11 @@ class BackButton extends Component {
 	render() {
 		return (
 			<div
-				className="button goBack"
+				className="button call-end"
 				onClick={this.onPressed}>
 			</div>
 		);
 	}
 }
 
-export default BackButton;
+export default CallEnd;

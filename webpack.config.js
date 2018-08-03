@@ -26,11 +26,18 @@ var config = {
     }, {
       test: /\.scss$/,
       loaders: ['style', 'css', 'sass']
-    }],
+    }, {
+      test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+      // use: [{
+      //   loader: "file-loader?progressive=true",
+      //   options: {}
+      // }]
+      loader: 'url-loader?limit=1500000&img?progressive=true'
+    }]
   },
   resolve: {
     root: path.resolve('.'),
-    extensions: ['', '.js'],
+    extensions: ['', '.js', '.jsx'],
   },
   plugins: [
     new webpack.optimize.DedupePlugin()

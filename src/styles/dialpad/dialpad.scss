@@ -3,8 +3,10 @@ $lightGray: #2D2D2D;
 $blue: #285EFA;
 $green: #3DE066;
 $red: #FA4A5D;
+$dummy: $green;
 $pulseDuration: 0.5s;
 .dialpad {
+    color: white;
     width: 100%;
     height: 100%;
     background-color: #232323;
@@ -18,23 +20,55 @@ $pulseDuration: 0.5s;
     bottom: 0;
     margin: auto;
     box-shadow: 0 30px 35px -25px black;
-    .display {
-        width: 100%;
-        height: 80px;
-        background-color: $lightGray;
-        margin-top: 40px;
-        input {
-            background-color: transparent;
-            width: 60%;
-            margin-left: 20%;
+    & .initial-view {
+        .display {
+            width: 100%;
             height: 80px;
-            border: none;
-            font-size: 30px;
-            color: white;
-            font-weight: 700;
-            letter-spacing: 2px;
-            &:focus {
-                outline: none;
+            background-color: $lightGray;
+            margin-top: 40px;
+            input {
+                background-color: transparent;
+                width: 60%;
+                margin-left: 20%;
+                height: 80px;
+                border: none;
+                font-size: 30px;
+                color: white;
+                font-weight: 700;
+                letter-spacing: 2px;
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+    & .call-view {
+        height: 100%;
+        & .contact {
+            height: 40%;
+            & div {
+                text-align: center;
+            }
+            & .avatar {
+                height: 70%;
+                position: relative;
+                & img {
+                    border-radius: 50%;
+                    height: 75%;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                }
+            }
+            & .name {
+                height: 15%;
+            }
+
+            & .number {
+                height: 15%;
             }
         }
     }
@@ -48,7 +82,7 @@ $pulseDuration: 0.5s;
             margin: 10px calc(50% - 90px);
             float: left;
         }
-				.button-double-spacer {
+        .button-double-spacer {
             width: 120px;
             margin: 10px calc(50% - 90px);
             float: left;
@@ -66,6 +100,9 @@ $pulseDuration: 0.5s;
             padding-top: 4px;
             font-weight: 700;
             cursor: pointer;
+            background-size: 60%;
+            background-repeat: no-repeat;
+            background-position: center;
             &.clicked {
                 animation: pulse-gray linear $pulseDuration 1;
             }
@@ -86,14 +123,6 @@ $pulseDuration: 0.5s;
                 position: relative;
                 top: -2px;
             }
-            &.addPerson,
-            &.goBack {
-                background-repeat: no-repeat;
-                background-position: center center;
-                background-size: 55% auto;
-                margin-bottom: 25px;
-                box-shadow: 0px 25px 30px -15px black;
-            }
             &.addPerson {
                 background-color: #285EFA;
                 background-image: url(http://s16.postimg.org/4u2rbu85t/add_Person.png);
@@ -101,9 +130,51 @@ $pulseDuration: 0.5s;
                     animation: pulse-blue linear $pulseDuration 1;
                 }
             }
-            &.goBack {
+            &.call {
+                background-color: $green;
+                background-image: url('./audio-call.png');
+                &.clicked {
+                    animation: pulse-blue linear $pulseDuration 1;
+                }
+            }
+            &.call-end {
+                background-color: $red;
+                background-image: url('./call-end.png');
+                &.clicked {
+                    animation: pulse-blue linear $pulseDuration 1;
+                }
+            }
+            &.back {
                 background-color: #FA4A5D;
-                background-image: url(http://s4.postimg.org/x6g6auu7d/back_Arrow.png);
+                background-image: url('./back.png');
+                &.clicked {
+                    animation: pulse-red linear $pulseDuration 1;
+                }
+            }
+            &.camera {
+                background-color: $dummy;
+                background-image: url('./back.png');
+                &.clicked {
+                    animation: pulse-red linear $pulseDuration 1;
+                }
+            }
+            &.speaker {
+                background-color: $dummy;
+                background-image: url('./back.png');
+                &.clicked {
+                    animation: pulse-red linear $pulseDuration 1;
+                }
+            }
+            &.microphone {
+                background-color: $dummy;
+                background-image: url('./back.png');
+                &.clicked {
+                    animation: pulse-red linear $pulseDuration 1;
+                }
+            }
+            &.keypad {
+                background-color: $dummy;
+                background-image: url('./back.png');
                 &.clicked {
                     animation: pulse-red linear $pulseDuration 1;
                 }

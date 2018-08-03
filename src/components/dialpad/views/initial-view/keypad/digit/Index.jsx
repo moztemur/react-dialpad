@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class DialpadButton extends Component {
+class Button extends Component {
 	constructor() {
 		super();
 		this.onPressed = this.onPressed.bind(this);
@@ -25,4 +25,4 @@ class DialpadButton extends Component {
 	}
 }
 
-export default DialpadButton;
+export default Button;
