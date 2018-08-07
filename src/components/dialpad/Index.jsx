@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+
 import CallView from './views/call-view';
 import InitialView from './views/initial-view';
+
+import { CLASS_PREFIX } from '../../util/constants';
 
 class Dialpad extends Component {
 	constructor() {
 		super();
 		this.state = {
 			state: '',
-			call: {}
+			call: {},
+			contact: {}
 		};
 		this.onDigitPressed = this.onDigitPressed.bind(this);
 		this.onBackPressed = this.onBackPressed.bind(this);
@@ -35,61 +39,64 @@ class Dialpad extends Component {
 
 	onCallPressed(number) {
 		const { onCallPressed } = this.props;
-		const call = {
-
-		};
 
 		this.setState({
 			state: 'callling',
-			call: call
+			contact: {
+				avatar: null,
+				name: '<Unnamed>',
+				number: number
+			}
 		});
 
 		if (onCallPressed) {
-			onCallPressed(call);
+			onCallPressed(this.state.call);
 		}
 	}
 
 	onCallEndPressed() {
 		const { onCallEndPressed } = this.props;
+		const { call } = this.state;
+
+		call.active = false;
 
 		this.setState({
-			state: ''
+			state: '',
+			call
 		});
 
 		if (onCallEndPressed) {
-			onCallEndPressed();
+			onCallEndPressed(this.state.call);
 		}
 	}
 
 	onRinging() {
-		this.setState({
-			state: 'ringing'
-		});
+		if (this.state.call.active !== false) {
+			this.setState({
+				state: 'ringing'
+			});
+		}
 	}
 
 	onCall() {
-		this.setState({
-			state: 'call'
-		});
+		if (this.state.call.active !== false) {
+			this.setState({
+				state: 'call'
+			});
+		}
 	}
 
 	render() {
 		const { style } = this.props;
 		let view;
-		let contact = {
-			avatar: null,
-			name: 'John Doe',
-			number: '+1234567890'
-		};
 
 		if (this.state.state === '') {
 			view = <InitialView
 				onCallPressed={this.onCallPressed}
 			/>;
-
 		} else {
 			view = <CallView
-				contact={contact}
+				contact={this.state.contact}
 				state={this.state.state}
 				call={this.state.call}
 				onCall={this.onCall}
@@ -99,7 +106,7 @@ class Dialpad extends Component {
 		}
 
 		return (
-			<div className='dialpad' style={style}>
+			<div className={`${CLASS_PREFIX}-root`} style={style}>
 				{view}
 			</div >
 		);

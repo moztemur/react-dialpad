@@ -23,7 +23,7 @@ class Action extends Component {
 	}
 
 	render() {
-		let buttons = <div className="buttons">
+		let buttons = <div className="action buttons">
 			<Call onPressed={this.onCallPressed} />
 			<div className="button-spacer">
 			</div>

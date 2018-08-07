@@ -1,24 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Button from '../../../../_shared/button';
 
-class CallEnd extends Component {
-	constructor() {
-		super();
-		this.onPressed = this.onPressed.bind(this);
-	}
-
-	onPressed() {
-		const { onPressed } = this.props;
-
-		onPressed();
-	}
-
+class CallEnd extends React.Component {
 	render() {
-		return (
-			<div
-				className="button call-end"
-				onClick={this.onPressed}>
-			</div>
-		);
+		const { ...otherProps } = this.props;
+
+		return <Button className="call-end" {...otherProps} />;
 	}
 }
 

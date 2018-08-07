@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 import CallEnd from './call-end';
-import Camera from './camera';
-import Microphone from './microphone';
-import Speaker from './speaker';
-import Keypad from './keypad';
+// import Camera from './camera';
+// import Microphone from './microphone';
+// import Speaker from './speaker';
+// import Keypad from './keypad';
 
 class Action extends Component {
 	constructor() {
@@ -20,11 +20,13 @@ class Action extends Component {
 
 	render() {
 		let buttons = <div className="buttons">
+			<div className="button-spacer">
+			</div>
 			<CallEnd onPressed={this.onCallEndPressed} />
-			<Camera />
+			{/* <Camera />
 			<Microphone />
 			<Speaker />
-			<Keypad />
+			<Keypad /> */}
 		</div>;
 
 		return buttons;

@@ -24,12 +24,12 @@ class App extends Component {
 
 	render() {
 		const style = {
-			width: '400px',
-			height: '630px'
+			width: '100%',
+			height: '100%'
 		};
 
 		return (
-			<div className="App">
+			<div className="app">
 				<Dialpad
 					style={style}
 					onCallPressed={this.startCall}

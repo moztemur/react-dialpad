@@ -1,28 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Button from '../../../../_shared/button';
 
-class Button extends Component {
-	constructor() {
-		super();
-		this.onPressed = this.onPressed.bind(this);
-	}
-
-	onPressed(value) {
-		const { onPressed } = this.props;
-
-		onPressed(value);
-	}
-
+class Digit extends React.Component {
 	render() {
-		const { value, letters } = this.props;
+		const { value, letters, ...otherProps } = this.props;
 
-		return (
-			<div className="button" onClick={() => this.onPressed(value)}>{value}
-				<div className="sub-dig">
-					{letters}
-				</div>
-			</div>
-		);
+		return <Button className="digit" value={value} subvalue={letters} {...otherProps} />;
 	}
 }
 
-export default Button;
+export default Digit;

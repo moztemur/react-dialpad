@@ -1,1 +1,313 @@
-@import './dialpad/dialpad'
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700);
+$prefix: 'dlpd';
+$lightGray: #2D2D2D;
+$blue: #285EFA;
+$green: #3DE066;
+$red: #FA4A5D;
+$dummy: $green;
+$pulseDuration: 0.5s;
+.#{$prefix}-root {
+    color: white;
+    background-color: #232323;
+    font-family: Lato;
+    font-weight: 400;
+    letter-spacing: 1px;
+    width: 100%;
+    height: 100%; // box-shadow: 0 30px 35px -25px black;
+    & .initial-view {
+        height: 100%;
+        .display {
+            width: 100%;
+            height: 20%;
+            background-color: $lightGray;
+            input {
+                background-color: transparent;
+                width: 80%;
+                margin-left: 10%;
+                height: 100%;
+                border: none;
+                font-size: 200%;
+                color: white;
+                font-weight: 700;
+                letter-spacing: 2px;
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+        .action {
+            height: 20%;
+        }
+        .keypad {
+            height: 60%;
+        }
+    }
+    & .call-view {
+        height: 100%;
+        & .contact {
+            height: 70%;
+            & div {
+                text-align: center;
+            }
+            & .avatar {
+                height: 70%;
+                position: relative;
+                & img {
+                    border-radius: 50%;
+                    height: 75%;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                }
+            }
+            & .name {
+                height: 15%;
+            }
+            & .number {
+                height: 15%;
+            }
+        }
+        .status {
+            height: 15%;
+            text-align: center;
+        }
+        .timer {
+            height: 15%;
+            text-align: center;
+        }
+        .action {
+            // height: 25%;
+        }
+    }
+    .buttons {
+        width: 80%;
+        margin: 0 10%;
+        overflow: hidden;
+        & .button-spacer {
+            width: 20%;
+            margin: 5.5% 6.6%;
+            float: left;
+        }
+        & .button {
+            width: 20%;
+            height: 0;
+            padding-bottom: 20%;
+            margin: 5.5% 6.6%;
+            color: white;
+            float: left;
+            background-color: $lightGray;
+            border-radius: 100%;
+            text-align: center;
+            background-size: 60%;
+            background-repeat: no-repeat;
+            background-position: center;
+            &.digit {
+                font-weight: 700;
+                font-size: 150%;
+                &.no-sub {
+                    line-height: 200%;
+                }
+                & .sub-digit {
+                    font-size: 50%;
+                    font-weight: 300;
+                }
+                &.clicked {
+                    animation: pulse-gray linear $pulseDuration 1;
+                }
+            }
+            &.call {
+                background-color: $green;
+                background-image: url('./audio-call.png');
+                &.clicked {
+                    animation: pulse-green linear $pulseDuration 1;
+                }
+            }
+            &.call-end {
+                background-color: $red;
+                background-image: url('./call-end.png');
+                &.clicked {
+                    animation: pulse-red linear $pulseDuration 1;
+                }
+            }
+            &.back {
+                background-color: $red;
+                background-image: url('./back.png');
+                &.clicked {
+                    animation: pulse-red linear $pulseDuration 1;
+                }
+            }
+            &.camera {
+                background-color: $dummy;
+                background-image: url('./camera.png');
+                &.clicked {
+                    animation: pulse-gray linear $pulseDuration 1;
+                }
+            }
+            &.speaker {
+                background-color: $dummy;
+                background-image: url('./speaker.png');
+                &.clicked {
+                    animation: pulse-gray linear $pulseDuration 1;
+                }
+            }
+            &.microphone {
+                background-color: $dummy;
+                background-image: url('./microphone.png');
+                &.clicked {
+                    animation: pulse-gray linear $pulseDuration 1;
+                }
+            }
+            &.keypad {
+                background-color: $dummy;
+                background-image: url('./keypad.png');
+                &.clicked {
+                    animation: pulse-gray linear $pulseDuration 1;
+                }
+            }
+        }
+    }
+}
+
+@keyframes pulse-gray {
+    0% {
+        box-shadow: inset 0 0 0px 30px $lightGray, inset 0 0 0px 30px white;
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    10% {
+        -ms-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
+    30% {
+        box-shadow: inset 0 0 0px 10px $lightGray, inset 0 0 0px 30px white;
+    }
+    60% {
+        box-shadow: inset 0 0 0px 0px $lightGray, inset 0 0 0px 0px white;
+        -ms-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes pulse-blue {
+    0% {
+        box-shadow: inset 0 0 0px 30px $blue, inset 0 0 0px 30px white;
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    10% {
+        -ms-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
+    30% {
+        box-shadow: inset 0 0 0px 10px $blue, inset 0 0 0px 30px white;
+    }
+    60% {
+        box-shadow: inset 0 0 0px 0px $blue, inset 0 0 0px 0px white;
+        -ms-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes pulse-green {
+    0% {
+        box-shadow: inset 0 0 0px 30px $green, inset 0 0 0px 30px white;
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    10% {
+        -ms-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
+    30% {
+        box-shadow: inset 0 0 0px 10px $green, inset 0 0 0px 30px white;
+    }
+    60% {
+        box-shadow: inset 0 0 0px 0px $green, inset 0 0 0px 0px white;
+        -ms-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes pulse-red {
+    0% {
+        box-shadow: inset 0 0 0px 30px $red, inset 0 0 0px 30px white;
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    10% {
+        -ms-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
+    30% {
+        box-shadow: inset 0 0 0px 10px $red, inset 0 0 0px 30px white;
+    }
+    60% {
+        box-shadow: inset 0 0 0px 0px $red, inset 0 0 0px 0px white;
+        -ms-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes pulsator {
+    0% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    40% {
+        -ms-transform: scale(0.8, 0.8);
+        -webkit-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes showPad {
+    0% {
+        top: 50px;
+        opacity: 0;
+    }
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}

@@ -1,24 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Button from '../../../../_shared/button';
 
-class Back extends Component {
-	constructor() {
-		super();
-		this.onPressed = this.onPressed.bind(this);
-	}
-
-	onPressed() {
-		const { onPressed } = this.props;
-
-		onPressed();
-	}
-
+class Back extends React.Component {
 	render() {
-		return (
-			<div
-				className="button back"
-				onClick={this.onPressed}>
-			</div>
-		);
+		const { ...otherProps } = this.props;
+
+		return <Button className="back" {...otherProps} />;
 	}
 }
 

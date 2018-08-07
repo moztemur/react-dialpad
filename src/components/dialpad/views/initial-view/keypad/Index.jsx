@@ -51,7 +51,7 @@ class Keypad extends Component {
 
 	render() {
 		return (
-			<div className="buttons">
+			<div className="keypad buttons">
 				{
 					this.state.buttons.map((button) => {
 						return <Digit onPressed={this.onDigitPressed}
