@@ -1,34 +1,35 @@
-var webpack = require('webpack');
-var path = require('path');
-var distPath = path.resolve(__dirname + '/demo/dist');
+const webpack = require('webpack');
+const path = require('path');
 
-var config = {
-  entry: [__dirname + '/demo/src/index.js'],
+module.exports = {
+  entry: './demo/src/index.js',
   output: {
-    path: distPath,
+    path: path.resolve(__dirname, 'demo/dist'),
     filename: 'bundle.js',
   },
   devtool: 'source-map',
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel-loader'],
-      exclude: /node_modules/,
-    }, {
-      test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
-    }],
+    rules: [
+      {
+        test: /\.jsx?$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.scss$/,
+          use: [
+              "style-loader", // creates style nodes from JS strings
+              "css-loader", // translates CSS into CommonJS
+              "sass-loader" // compiles Sass to CSS, using Node Sass by default
+          ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+        use: 'url-loader?limit=1500000&img?progressive=true',
+      },
+    ]
   },
   resolve: {
-    root: path.resolve('.'),
-    extensions: ['', '.js'],
+    extensions: [".jsx", ".json", ".js"]
   },
-  plugins: [
-    new webpack.optimize.DedupePlugin()
-  ],
-  node: {
-    global: true
-  }
 };
-
-module.exports = config;
