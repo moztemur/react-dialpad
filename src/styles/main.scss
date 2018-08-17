@@ -42,7 +42,7 @@ $pulseDuration: 0.5s;
             height: 60%;
         }
     }
-    & .call-view {
+    & .call-view, .incoming-call-view {
         height: 100%;
         & .contact {
             height: 70%;
@@ -71,11 +71,11 @@ $pulseDuration: 0.5s;
             }
         }
         .status {
-            height: 15%;
+            height: 10%;
             text-align: center;
         }
         .timer {
-            height: 15%;
+            height: 10%;
             text-align: center;
         }
         .action {
@@ -118,14 +118,14 @@ $pulseDuration: 0.5s;
                     animation: pulse-gray linear $pulseDuration 1;
                 }
             }
-            &.call {
+            &.call,&.call-reply {
                 background-color: $green;
                 background-image: url('./audio-call.png');
                 &.clicked {
                     animation: pulse-green linear $pulseDuration 1;
                 }
             }
-            &.call-end {
+            &.call-end,&.call-reject {
                 background-color: $red;
                 background-image: url('./call-end.png');
                 &.clicked {
