@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from '../../../../_shared/button';
 
-class CallEnd extends React.Component {
+class CallReply extends React.Component {
 	render() {
 		const { ...otherProps } = this.props;
 
-		return <Button def="Call End" className="call-end" {...otherProps} />;
+		return <Button def="Reply" className="call-reply" {...otherProps} />;
 	}
 }
 
-export default CallEnd;
+export default CallReply;

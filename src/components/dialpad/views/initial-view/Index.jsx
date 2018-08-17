@@ -15,27 +15,19 @@ class InitialView extends Component {
 	}
 
 	onDigitPressed(value) {
-		const { onDigitPressed } = this.props;
 		const currentDisplay = this.state.display;
 
 		this.setState({
 			display: currentDisplay + value
 		});
-		if (onDigitPressed) {
-			onDigitPressed(value);
-		}
 	}
 
 	onBackPressed() {
-		const { onBackPressed } = this.props;
 		const currentDisplay = this.state.display;
 
 		this.setState({
 			display: currentDisplay.slice(0, -1)
 		});
-		if (onBackPressed) {
-			onBackPressed();
-		}
 	}
 
 	onCallPressed() {

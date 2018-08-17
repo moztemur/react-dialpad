@@ -2,46 +2,47 @@ import React, { Component } from 'react';
 
 import CallView from './views/call-view';
 import InitialView from './views/initial-view';
+import IncomingCallView from './views/incoming-call-view';
 
 import { CLASS_PREFIX } from '../../util/constants';
+import STATES from '../../util/states';
+import ACTIONS from '../../util/actions';
 
 class Dialpad extends Component {
 	constructor() {
 		super();
 		this.state = {
-			state: '',
-			call: {},
+			state: STATES.DEFAULT,
+			timer: null,
+			startTime: null,
 			contact: {}
 		};
-		this.onDigitPressed = this.onDigitPressed.bind(this);
-		this.onBackPressed = this.onBackPressed.bind(this);
 		this.onCallPressed = this.onCallPressed.bind(this);
 		this.onCallEndPressed = this.onCallEndPressed.bind(this);
-		this.onRinging = this.onRinging.bind(this);
-		this.onCall = this.onCall.bind(this);
+		this.onCallReplyPressed = this.onCallReplyPressed.bind(this);
+		this.onCallRejectPressed = this.onCallRejectPressed.bind(this);
+
+		this.setRinging = this.setRinging.bind(this);
+		this.setOnCall = this.setOnCall.bind(this);
+		this.setIncomingCall = this.setIncomingCall.bind(this);
+		this.endCall = this.endCall.bind(this);
 	}
 
-	onDigitPressed(value) {
-		const { onDigitPressed } = this.props;
+	componentDidUpdate(prevProps, prevState) {
+		const { onStateChanged } = this.props;
 
-		if (onDigitPressed) {
-			onDigitPressed(value);
-		}
-	}
-
-	onBackPressed() {
-		const { onBackPressed } = this.props;
-
-		if (onBackPressed) {
-			onBackPressed();
+		if (prevState.state !== this.state.state) {
+			if (onStateChanged) {
+				onStateChanged(this.state.state);
+			}
 		}
 	}
 
 	onCallPressed(number) {
-		const { onCallPressed } = this.props;
+		const { onActionInvoked } = this.props;
 
 		this.setState({
-			state: 'callling',
+			state: STATES.CALLLING,
 			contact: {
 				avatar: null,
 				name: '<Unnamed>',
@@ -49,58 +50,125 @@ class Dialpad extends Component {
 			}
 		});
 
-		if (onCallPressed) {
-			onCallPressed(this.state.call);
+		if (onActionInvoked) {
+			onActionInvoked(ACTIONS.CALL_STARTED, { number });
 		}
 	}
 
 	onCallEndPressed() {
-		const { onCallEndPressed } = this.props;
-		const { call } = this.state;
-
-		call.active = false;
+		const { onActionInvoked } = this.props;
 
 		this.setState({
-			state: '',
-			call
+			state: STATES.ENDING
 		});
 
-		if (onCallEndPressed) {
-			onCallEndPressed(this.state.call);
+		if (onActionInvoked) {
+			onActionInvoked(ACTIONS.CALL_ENDED);
 		}
 	}
 
-	onRinging() {
-		if (this.state.call.active !== false) {
-			this.setState({
-				state: 'ringing'
-			});
+	onCallReplyPressed() {
+		if (this.state.state !== STATES.INCOMING_CALL) {
+			throw new Error('Call can be replied only on INCOMING_CALL state');
+		}
+		const { onActionInvoked } = this.props;
+
+		this.setState({
+			state: STATES.REPLYING
+		});
+
+		if (onActionInvoked) {
+			onActionInvoked(ACTIONS.CALL_REPLIED);
 		}
 	}
 
-	onCall() {
-		if (this.state.call.active !== false) {
-			this.setState({
-				state: 'call'
-			});
+	onCallRejectPressed() {
+		if (this.state.state !== STATES.INCOMING_CALL) {
+			throw new Error('Call can be rejected only on INCOMING_CALL state');
 		}
+		const { onActionInvoked } = this.props;
+
+		this.setState({
+			state: STATES.REJECTING
+		});
+
+		if (onActionInvoked) {
+			onActionInvoked(ACTIONS.CALL_REJECTED);
+		}
+	}
+
+	setOnCall() {
+		if (this.state.state === STATES.RINGING ||
+			this.state.state === STATES.REPLYING ||
+			this.state.state === STATES.CALLLING) {
+			this.setState({
+				state: STATES.ON_CALL,
+				startTime: Date.now()
+			});
+
+			this.timer = setInterval(() => {
+				this.setState({
+					timer: Math.floor((Date.now() - this.state.startTime) / 1000)
+				});
+			}, 1000);
+		} else {
+			throw new Error('ON_CALL state can only be navigated from RINGING, REPLYING or CALLLING');
+		}
+	}
+
+	setRinging() {
+		if (this.state.state !== STATES.CALLLING) {
+			throw new Error('RINGING state can only be navigated CALLLING');
+		}
+		this.setState({
+			state: STATES.RINGING
+		});
+	}
+
+	setIncomingCall(contact, options) {
+		if (this.state.state !== STATES.DEFAULT) {
+			throw new Error('Multiple call not supported.');
+		}
+		this.setState({
+			contact,
+			state: STATES.INCOMING_CALL
+		});
+	}
+
+	endCall() {
+		if (this.timer) {
+			clearInterval(this.timer);
+		}
+		this.setState({
+			state: STATES.DEFAULT,
+			startTime: null,
+			timer: null,
+			contact: {}
+		});
 	}
 
 	render() {
 		const { style } = this.props;
 		let view;
 
-		if (this.state.state === '') {
+		if (this.state.state === STATES.DEFAULT) {
 			view = <InitialView
 				onCallPressed={this.onCallPressed}
+			/>;
+		} else if (this.state.state === STATES.INCOMING_CALL ||
+					this.state.state === STATES.REPLYING ||
+					this.state.state === STATES.REJECTING) {
+			view = <IncomingCallView
+				contact={this.state.contact}
+				state={this.state.state}
+				onCallRejectPressed={this.onCallRejectPressed}
+				onCallReplyPressed={this.onCallReplyPressed}
 			/>;
 		} else {
 			view = <CallView
 				contact={this.state.contact}
 				state={this.state.state}
-				call={this.state.call}
-				onCall={this.onCall}
-				onRinging={this.onRinging}
+				timer={this.state.timer}
 				onCallEndPressed={this.onCallEndPressed}
 			/>;
 		}

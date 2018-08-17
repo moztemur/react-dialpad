@@ -5,45 +5,14 @@ import Status from './status';
 import Timer from './timer';
 import Action from './action';
 
+import STATES from '../../../../util/states';
+
 class CallView extends Component {
 	constructor() {
 		super();
-		this.state = {
-			call: {},
-			timer: ''
-		};
 		this.onCallEndPressed = this.onCallEndPressed.bind(this);
-		this.onRinging = this.onRinging.bind(this);
-		this.onCall = this.onCall.bind(this);
-	}
-
-	componentDidMount() {
-		const { call } = this.props;
-
-		if (call) {
-			call.onCall = this.onCall;
-			call.onRinging = this.onRinging;
-		}
-	}
-
-	onRinging() {
-		const { onRinging } = this.props;
-
-		if (onRinging) {
-			onRinging();
-		}
-	}
-
-	onCall() {
-		const { onCall } = this.props;
-
-		this.setState({
-			timer: '11:22:33'
-		});
-
-		if (onCall) {
-			onCall();
-		}
+		this.onCallRejectPressed = this.onCallRejectPressed.bind(this);
+		this.onCallReplyPressed = this.onCallReplyPressed.bind(this);
 	}
 
 	onCallEndPressed() {
@@ -54,23 +23,51 @@ class CallView extends Component {
 		}
 	}
 
-	render() {
-		const { style, contact, state } = this.props;
-		let statusOrTimer;
+	onCallRejectPressed() {
+		const { onCallRejectPressed } = this.props;
 
-		if (this.state.timer === '') {
+		if (onCallRejectPressed) {
+			onCallRejectPressed();
+		}
+	}
+
+	onCallReplyPressed() {
+		const { onCallReplyPressed } = this.props;
+
+		if (onCallReplyPressed) {
+			onCallReplyPressed();
+		}
+	}
+
+	render() {
+		const { style, contact, state, timer } = this.props;
+		let statusOrTimer;
+		let action;
+
+		if (!timer) {
 			statusOrTimer = <Status state={state} />;
 		} else {
-			statusOrTimer = <Timer timer={this.state.timer} />;
+			statusOrTimer = <Timer timer={timer} />;
+		}
+
+		if (state === STATES.INCOMING_CALL) {
+			action = <Action
+				state={state}
+				onCallRejectPressed={this.onCallRejectPressed}
+				onCallReplyPressed={this.onCallReplyPressed}
+			/>;
+		} else {
+			action = <Action
+				state={state}
+				onCallEndPressed={this.onCallEndPressed}
+			/>;
 		}
 
 		return (
 			<div className='call-view' style={style}>
 				<Contact contact={contact} />
 				{statusOrTimer}
-				<Action
-					onCallEndPressed={this.onCallEndPressed}
-				/>
+				{action}
 			</div >
 		);
 	}
