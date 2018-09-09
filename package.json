@@ -6,19 +6,22 @@
   "scripts": {
     "build": "webpack",
     "demo": "webpack --config webpack.demo.config.js",
-    "prod": "webpack -p",
     "prepublish": "npm run build",
-    "test": "mocha -w test/helpers/browser.js test/**/*.spec.js"
+    "test": "jest -w test/helpers/browser.js test/**/*.spec.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^1.0.0",
     "eslint": "^5.3.0",
+    "jest": "^23.5.0",
     "node-sass": "^4.9.3",
+    "peerjs": "^0.3.16",
+    "react-test-renderer": "^16.4.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.22.1",
     "url-loader": "^1.1.1",
