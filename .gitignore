@@ -9,9 +9,8 @@ npm-debug.log*
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (http://nodejs.org/api/addons.html)
-dist
-demo/dist
+# Compiled bundles
+dist/**/*
 
 # Dependency directories
 node_modules
