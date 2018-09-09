@@ -29,7 +29,7 @@ class App extends React.Component {
 			number
 		});
 		const that = this;
-		this.peer = new Peer(number, { key: 'lwjd5qra8257b9' });
+		this.peer = new Peer(number, { key: 'lwjd5qra8257b9', secure: true });
 		this.registerPeerEvents(this.peer);
 	}
 
