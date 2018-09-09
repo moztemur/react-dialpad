@@ -42,10 +42,10 @@ class Dialpad extends Component {
 		const { onActionInvoked } = this.props;
 
 		this.setState({
-			state: STATES.CALLLING,
+			state: STATES.CALLING,
 			contact: {
 				avatar: null,
-				name: '<Unnamed>',
+				name: number, // TODO: Replaced with the real contact name in provided addressbook
 				number: number
 			}
 		});
@@ -100,7 +100,7 @@ class Dialpad extends Component {
 	setOnCall() {
 		if (this.state.state === STATES.RINGING ||
 			this.state.state === STATES.REPLYING ||
-			this.state.state === STATES.CALLLING) {
+			this.state.state === STATES.CALLING) {
 			this.setState({
 				state: STATES.ON_CALL,
 				startTime: Date.now()
@@ -112,13 +112,13 @@ class Dialpad extends Component {
 				});
 			}, 1000);
 		} else {
-			throw new Error('ON_CALL state can only be navigated from RINGING, REPLYING or CALLLING');
+			throw new Error('ON_CALL state can only be navigated from RINGING, REPLYING or CALLING');
 		}
 	}
 
 	setRinging() {
-		if (this.state.state !== STATES.CALLLING) {
-			throw new Error('RINGING state can only be navigated CALLLING');
+		if (this.state.state !== STATES.CALLING) {
+			throw new Error('RINGING state can only be navigated CALLING');
 		}
 		this.setState({
 			state: STATES.RINGING

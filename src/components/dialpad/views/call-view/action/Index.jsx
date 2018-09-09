@@ -31,7 +31,7 @@ class Action extends Component {
 				<CallEnd
 					onPressed={this.onCallEndPressed}
 					callState={state}
-					enablerStates={[STATES.CALLLING, STATES.RINGING, STATES.ON_CALL]}
+					enablerStates={[STATES.CALLING, STATES.RINGING, STATES.ON_CALL]}
 				/>
 			{/* <Camera />
 			<Microphone />
