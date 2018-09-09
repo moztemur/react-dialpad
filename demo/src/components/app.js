@@ -1,9 +1,19 @@
 import React from 'react';
+import Peer from 'peerjs';
+
 import { Dialpad } from '../../../dist/bundle';
 
 class App extends React.Component {
 	constructor() {
 		super();
+		this.state = {
+			number: '',
+		};
+		this.peer = null;
+		this.call = null;
+		this.getUserMedia = this.getUserMedia.bind(this);
+		this.registerCallEvents = this.registerCallEvents.bind(this);
+		this.registerPeerEvents = this.registerPeerEvents.bind(this);
 
 		this.onActionInvoked = this.onActionInvoked.bind(this);
 		this.onStateChanged = this.onStateChanged.bind(this);
@@ -11,15 +21,44 @@ class App extends React.Component {
 		this.onCallEnded = this.onCallEnded.bind(this);
 		this.onCallReplied = this.onCallReplied.bind(this);
 		this.onCallRejected = this.onCallRejected.bind(this);
-
-		this.onRemoteActionInvoked = this.onRemoteActionInvoked.bind(this);
-		this.onRemoteCallStarted = this.onRemoteCallStarted.bind(this);
-		this.onRemoteCallEnded = this.onRemoteCallEnded.bind(this);
-		this.onRemoteCallReplied = this.onRemoteCallReplied.bind(this);
-		this.onRemoteCallRejected = this.onRemoteCallRejected.bind(this);
 	}
 
-	/*  DIALPAD */
+	componentDidMount() {
+		const number = Date.now().toString().slice(-5);
+		this.setState({
+			number
+		});
+		const that = this;
+		this.peer = new Peer(number, { key: 'lwjd5qra8257b9' });
+		this.registerPeerEvents(this.peer);
+	}
+
+	getUserMedia() {
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+		return new Promise((resolve, reject) => {
+			navigator.getUserMedia({ video: true, audio: true }, resolve, reject);
+		});
+	}
+
+	registerCallEvents(call) {
+		call.on('stream', (remoteStream) => {
+			this.dialpad.setOnCall();
+		});
+		call.on('close', () => {
+			this.dialpad.endCall();
+		});
+	}
+
+	registerPeerEvents(peer) {
+		peer.on('call', (call) => {
+			this.call = call;
+			this.dialpad.setIncomingCall({
+				name: call.peer,
+				number: call.peer
+			});
+		});
+	}
+
 	onActionInvoked(action, data) {
 		switch (action) {
 			case 'CALL_STARTED':
@@ -40,115 +79,59 @@ class App extends React.Component {
 	}
 
 	onStateChanged(state) {
-		console.log('stateee', state);
+		console.log('to state', state);
 	}
 
 	onCallStarted(number) {
-		console.log('Callling...', number);
-		setTimeout(() => {
+		console.log('Calling...', number);
+		this.getUserMedia().then((stream) => {
+			this.call = this.peer.call(number, stream);
 			this.dialpad.setRinging();
-
-			this.remoteDialpad.setIncomingCall({
-				name: 'You',
-				number: '+1234567890'
-			});
-		}, 3000);
+			this.registerCallEvents(this.call);
+		}).catch((err) => {
+			console.log('Failed to get local stream', err);
+		});
 	}
 
 	onCallEnded() {
-		setTimeout(() => {
+		if (this.call.open) {
+			this.call.close();
+		} else {
 			this.dialpad.endCall();
-			this.remoteDialpad.endCall();
-		}, 1000);
-	}
-
-	onCallReplied(event) {
-		setTimeout(() => {
-			this.dialpad.setOnCall();
-			this.remoteDialpad.setOnCall();
-		}, 1000);
-	}
-
-	onCallRejected(event) {
-		setTimeout(() => {
-			this.dialpad.endCall();
-			this.remoteDialpad.endCall();
-		}, 1000);
-	}
-
-	/* REMOTE DIALPAD */
-
-	onRemoteActionInvoked(action, data) {
-		switch (action) {
-			case 'CALL_STARTED':
-				this.onRemoteCallStarted(data.number);
-				break;
-			case 'CALL_ENDED':
-				this.onRemoteCallEnded();
-				break;
-			case 'CALL_REPLIED':
-				this.onRemoteCallReplied();
-				break;
-			case 'CALL_REJECTED':
-				this.onRemoteCallRejected();
-				break;
-			default:
-				break;
 		}
 	}
 
-	onRemoteCallStarted(number, event) {
-		console.log('Callling...', number);
-		setTimeout(() => {
-			this.remoteDialpad.setRinging();
-			this.dialpad.setIncomingCall({
-				name: 'Remote',
-				number: '+9012345678'
-			});
-		}, 3000);
+	onCallReplied() {
+		this.getUserMedia().then((stream) => {
+			this.call.answer(stream); // Answer the call with an A/V stream.
+			this.registerCallEvents(this.call);
+		}).catch((err) => {
+			console.log('Failed to get local stream', err);
+		});
 	}
 
-	onRemoteCallEnded(event) {
-		setTimeout(() => {
+	onCallRejected() {
+		if (this.call.open) {
+			this.call.close();
+		} else {
 			this.dialpad.endCall();
-			this.remoteDialpad.endCall();
-		}, 1000);
-	}
-
-	onRemoteCallReplied(event) {
-		setTimeout(() => {
-			this.dialpad.setOnCall();
-			this.remoteDialpad.setOnCall();
-		}, 1000);
-	}
-
-	onRemoteCallRejected(event) {
-		setTimeout(() => {
-			this.dialpad.endCall();
-			this.remoteDialpad.endCall();
-		}, 1000);
+		}
 	}
 
 	render() {
 		const style = {
-			width: '100%',
-			height: '100%'
+			margin: '0 30px',
+			float: 'left',
 		};
 
 		return (
 			<div className="app">
-				<div>You (Local): +1234567890</div>
+				<div style={style}>Your number: {this.state.number}</div>
 				<Dialpad
 					style={style}
 					ref={dialpad => (this.dialpad = dialpad)}
 					onActionInvoked={this.onActionInvoked}
 					onStateChanged={this.onStateChanged}
-				/>
-				<div>Remote: +9012345678</div>
-				<Dialpad
-					style={style}
-					ref={dialpad => (this.remoteDialpad = dialpad)}
-					onActionInvoked={this.onRemoteActionInvoked}
 				/>
 			</div>
 		);
