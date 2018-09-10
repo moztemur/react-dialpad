@@ -1,8 +1,12 @@
-# React Dialpad: IN DEVELOPMENT #
+# React Dialpad: Beta #
+
+![npm](https://img.shields.io/npm/dw/react-dialpad.svg)
 
 React Dialpad provides you a simple UI independent of communication platform to create calls and handle incoming calls.
 
 [Demo](https://mhmtztmr.github.io/react-dialpad/demo/) using [Peer.js](https://peerjs.com/)
+
+Open demo on two browser windows to see peer-to-peer behaviour.
 
 ## Install ##
 
@@ -10,7 +14,8 @@ React Dialpad provides you a simple UI independent of communication platform to 
 
 ## Features ##
 
-Component interaction is satisfied in two ways:
+Component interaction is achieved in two ways:
+
 	- Prop of `onActionInvoked` in order to listen actions invoked by user via UI buttons
 	- Component methods in order to update component
 
