@@ -14,3 +14,9 @@ dist/**/*
 
 # Dependency directories
 node_modules
+
+# coverage
+coverage
+
+# test snapshots
+test/**/__snapshots__
