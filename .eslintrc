@@ -1,0 +1,16 @@
+{
+    "rules": {
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"]
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        }
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ]
+}
