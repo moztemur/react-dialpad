@@ -17,6 +17,9 @@ module.exports = {
         test: /\.jsx?$/,
         use: 'babel-loader',
         exclude: /node_modules/,
+        resolve: {
+          extensions: [".jsx", ".json", ".js"]
+        },
       },
       {
         test: /\.scss$/,
@@ -32,7 +35,7 @@ module.exports = {
       },
     ]
   },
-  resolve: {
-    extensions: [".jsx", ".json", ".js"]
-  },
+  // resolve: {
+  //   extensions: [".jsx", ".json", ".js"]
+  // },
 };
