@@ -8,7 +8,7 @@ module.exports = {
     filename: 'bundle.js',
     library: 'react-dialpad',
     libraryTarget: 'umd',
-    umdNamedDefine: true
+    umdNamedDefine: true,
   },
   devtool: 'source-map',
   module: {
@@ -17,9 +17,6 @@ module.exports = {
         test: /\.jsx?$/,
         use: 'babel-loader',
         exclude: /node_modules/,
-        resolve: {
-          extensions: [".jsx", ".json", ".js"]
-        },
       },
       {
         test: /\.scss$/,
@@ -35,7 +32,4 @@ module.exports = {
       },
     ]
   },
-  // resolve: {
-  //   extensions: [".jsx", ".json", ".js"]
-  // },
 };
