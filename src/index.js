@@ -1,4 +1,4 @@
-import Dialpad from './components/dialpad';
+var Dialpad = require('./components/dialpad');
 import './styles/main.scss';
 
 module.exports = {
