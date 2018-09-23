@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
 
 module.exports = {
   entry: './src/index.js',
@@ -32,4 +33,9 @@ module.exports = {
       },
     ]
   },
+  resolve: {
+    plugins: [
+      new DirectoryNamedWebpackPlugin(true)
+    ]
+  }
 };

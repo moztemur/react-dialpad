@@ -17,6 +17,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^1.0.0",
+    "directory-named-webpack-plugin": "^4.0.0",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "jest": "^23.5.0",
