@@ -181,4 +181,4 @@ class Dialpad extends Component {
 	}
 }
 
-export default Dialpad;
+exports.Dialpad = Dialpad;
