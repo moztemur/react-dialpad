@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
 
 module.exports = {
   entry: './src/index.js',
@@ -31,11 +30,6 @@ module.exports = {
         test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
         use: 'url-loader?limit=1500000&img?progressive=true',
       },
-    ]
-  },
-  resolve: {
-    plugins: [
-      new DirectoryNamedWebpackPlugin(true)
     ]
   }
 };
