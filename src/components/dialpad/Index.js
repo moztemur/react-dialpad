@@ -8,7 +8,7 @@ import { CLASS_PREFIX } from '../../util/constants';
 import STATES from '../../util/states';
 import ACTIONS from '../../util/actions';
 
-class Dialpad extends Component {
+class ReactDialpad extends Component {
   constructor() {
     super();
     this.state = {
@@ -181,4 +181,4 @@ class Dialpad extends Component {
   }
 }
 
-export default Dialpad;
+export default ReactDialpad;
