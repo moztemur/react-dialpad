@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Button from '../../../../src/components/dialpad/_shared/button';
+import Button from '../../../../src/components/dialpad/_shared/button/Index';
 
 test('Button without subvalue to have 1 divs', () => {
   const wrapper = shallow(<Button className="digit" value={1} />);
