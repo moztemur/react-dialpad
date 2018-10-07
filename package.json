@@ -21,6 +21,9 @@
     "@babel/preset-react": "^7.0.0",
     "@commitlint/cli": "^7.2.0",
     "@commitlint/config-angular": "^7.1.2",
+    "@semantic-release/changelog": "^3.0.0",
+    "@semantic-release/git": "^7.0.4",
+    "@semantic-release/npm": "^5.0.4",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
@@ -36,12 +39,12 @@
     "peerjs": "^0.3.16",
     "react-test-renderer": "^16.4.2",
     "sass-loader": "^7.1.0",
+    "semantic-release": "^15.9.17",
     "style-loader": "^0.22.1",
+    "travis-deploy-once": "^5.0.9",
     "url-loader": "^1.1.1",
     "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0",
-    "travis-deploy-once": "^5.0.9",
-    "semantic-release": "^15.9.17"
+    "webpack-cli": "^3.1.0"
   },
   "dependencies": {
     "react": "^16.4.2",
