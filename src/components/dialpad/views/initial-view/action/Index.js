@@ -1,37 +1,37 @@
 import React, { Component } from 'react';
 
-import Back from './back';
-import Call from './call';
+import Back from './back/Index';
+import Call from './call/Index';
 
 class Action extends Component {
-	constructor() {
-		super();
-		this.onBackPressed = this.onBackPressed.bind(this);
-		this.onCallPressed = this.onCallPressed.bind(this);
-	}
+  constructor() {
+    super();
+    this.onBackPressed = this.onBackPressed.bind(this);
+    this.onCallPressed = this.onCallPressed.bind(this);
+  }
 
-	onBackPressed() {
-		const { onBackPressed } = this.props;
+  onBackPressed() {
+    const { onBackPressed } = this.props;
 
-		onBackPressed();
-	}
+    onBackPressed();
+  }
 
-	onCallPressed() {
-		const { onCallPressed } = this.props;
+  onCallPressed() {
+    const { onCallPressed } = this.props;
 
-		onCallPressed();
-	}
+    onCallPressed();
+  }
 
-	render() {
-		let buttons = <div className="action buttons">
-			<Call onPressed={this.onCallPressed} />
-			<div className="button-spacer">
-			</div>
-			<Back onPressed={this.onBackPressed} />
-		</div>;
+  render() {
+    let buttons = <div className="action buttons">
+      <Call onPressed={this.onCallPressed} />
+      <div className="button-spacer">
+      </div>
+      <Back onPressed={this.onBackPressed} />
+    </div>;
 
-		return buttons;
-	}
+    return buttons;
+  }
 }
 
 export default Action;

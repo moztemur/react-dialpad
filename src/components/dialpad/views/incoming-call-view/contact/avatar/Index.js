@@ -3,19 +3,19 @@ import React, { Component } from 'react';
 import DefaultAvatar from './avatar.png';
 
 class Avatar extends Component {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 
-	render() {
-		const { avatar } = this.props;
+  render() {
+    const { avatar } = this.props;
 
-		return (
-			<div className="avatar">
-				<img src={avatar || DefaultAvatar} />
-			</div>
-		);
-	}
+    return (
+      <div className="avatar">
+        <img src={avatar || DefaultAvatar} />
+      </div>
+    );
+  }
 }
 
 export default Avatar;

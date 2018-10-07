@@ -1,6 +1,4 @@
-var Dialpad = require('./components/dialpad');
+import ReactDialpad from './components/dialpad/index';
 import './styles/main.scss';
 
-module.exports = {
-	Dialpad
-};
+export default ReactDialpad;

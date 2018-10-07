@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 
 class Timer extends Component {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 
-	render() {
-		const { timer } = this.props;
+  render() {
+    const { timer } = this.props;
 
-		return (
-			<div className="timer">
-				{timer}
-			</div>
-		);
-	}
+    return (
+      <div className="timer">
+        {timer}
+      </div>
+    );
+  }
 }
 
 export default Timer;

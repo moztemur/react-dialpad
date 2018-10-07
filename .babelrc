@@ -1,4 +1,6 @@
 {
-  "presets": ["env", "react", "stage-0"],
-  "plugins": ["import-directory"]
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ]
 }

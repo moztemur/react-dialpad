@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 
 class Number extends Component {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 
-	render() {
-		const { number } = this.props;
+  render() {
+    const { number } = this.props;
 
-		return (
-			<div className="number">
-				{number}
-			</div>
-		);
-	}
+    return (
+      <div className="number">
+        {number}
+      </div>
+    );
+  }
 }
 
 export default Number;

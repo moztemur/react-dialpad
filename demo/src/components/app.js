@@ -1,7 +1,7 @@
 import React from 'react';
 import Peer from 'peerjs';
 
-import { Dialpad } from '../../../dist/bundle';
+import ReactDialpad from '../../../dist/bundle';
 
 class App extends React.Component {
 	constructor() {
@@ -127,7 +127,7 @@ class App extends React.Component {
 		return (
 			<div className="app">
 				<div style={style}>Your number: {this.state.number}</div>
-				<Dialpad
+				<ReactDialpad
 					style={style}
 					ref={dialpad => (this.dialpad = dialpad)}
 					onActionInvoked={this.onActionInvoked}

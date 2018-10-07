@@ -1,0 +1,28 @@
+parser: babel-eslint
+plugins:
+- react
+extends:
+- eslint:recommended
+- plugin:react/recommended
+rules:
+  indent:
+  - error
+  - 2
+  no-console: 0
+  eol-last:
+  - error
+  - always
+  react/prop-types: 0
+parserOptions:
+  ecmaVersion: 6
+  sourceType: module
+globals:
+  document: true
+  window: true
+  setInterval: true
+  clearInterval: true
+  setTimeout: true
+  clearTimeout: true
+  console: true
+env:
+  es6: true

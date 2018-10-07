@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 
 class Name extends Component {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 
-	render() {
-		const { name } = this.props;
+  render() {
+    const { name } = this.props;
 
-		return (
-			<div className="name">
-				{name}
-			</div>
-		);
-	}
+    return (
+      <div className="name">
+        {name}
+      </div>
+    );
+  }
 }
 
 export default Name;

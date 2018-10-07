@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from '../../../../_shared/button';
+import Button from '../../../../_shared/button/Index';
 
 class Back extends React.Component {
-	render() {
-		const { ...otherProps } = this.props;
+  render() {
+    const { ...otherProps } = this.props;
 
-		return <Button className="back" {...otherProps} />;
-	}
+    return <Button className="back" {...otherProps} />;
+  }
 }
 
 export default Back;
