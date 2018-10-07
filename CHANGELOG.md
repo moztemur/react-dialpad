@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/mhmtztmr/react-dialpad/compare/v1.0.0...v1.0.1) (2018-10-07)
+
+
+### Bug Fixes
+
+* add main script ([#7](https://github.com/mhmtztmr/react-dialpad/issues/7)) ([db406cc](https://github.com/mhmtztmr/react-dialpad/commit/db406cc))
+
 # 1.0.0 (2018-10-07)
 
 
