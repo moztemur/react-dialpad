@@ -1,4 +1,5 @@
-import ReactDialpad from './components/dialpad/Index';
+import ReactDialpad from './components/dialpad/index';
 import './styles/main.scss';
+
 
 export default ReactDialpad;
