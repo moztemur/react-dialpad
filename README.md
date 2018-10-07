@@ -1,6 +1,6 @@
-# React Dialpad: Beta #
+# React Dialpad #
 
-![npm](https://img.shields.io/npm/dw/react-dialpad.svg)
+![npm](https://img.shields.io/npm/v/react-dialpad.svg) ![travis](https://img.shields.io/travis/mhmtztmr/react-dialpad.svg)
 
 React Dialpad provides you a simple UI independent of communication platform to create calls and handle incoming calls.
 
@@ -70,7 +70,6 @@ Methods can be accessed using [Refs](https://reactjs.org/docs/refs-and-the-dom.h
 ## Inspired by ##
 
 https://dribbble.com/shots/2280148-Day-003-Animated-Dial-Pad
-
 https://codepen.io/anon/pen/mWvymM
 
 ## Example Usage ##
@@ -79,7 +78,7 @@ https://codepen.io/anon/pen/mWvymM
 import React from 'react';
 import Peer from 'peerjs';
 
-import { Dialpad } from 'react-dialpad';
+import ReactDialpad from 'react-dialpad';
 
 class App extends React.Component {
 	constructor() {
@@ -205,7 +204,7 @@ class App extends React.Component {
 		return (
 			<div className="app">
 				<div style={style}>Your number: {this.state.number}</div>
-				<Dialpad
+				<ReactDialpad
 					style={style}
 					ref={dialpad => (this.dialpad = dialpad)}
 					onActionInvoked={this.onActionInvoked}
