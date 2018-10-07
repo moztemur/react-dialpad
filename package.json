@@ -3,6 +3,7 @@
   "version": "0.0.0-development",
   "author": "Mahmut Oztemur",
   "license": "MIT",
+  "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --mode production",
     "demo": "webpack --mode production --config webpack.demo.config.js",
