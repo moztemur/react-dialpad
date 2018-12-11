@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/mhmtztmr/react-dialpad/compare/v1.0.1...v1.0.2) (2018-12-11)
+
+
+### Bug Fixes
+
+* jest vulnerability fix ([#8](https://github.com/mhmtztmr/react-dialpad/issues/8)) ([4efb5c2](https://github.com/mhmtztmr/react-dialpad/commit/4efb5c2))
+
 ## [1.0.1](https://github.com/mhmtztmr/react-dialpad/compare/v1.0.0...v1.0.1) (2018-10-07)
 
 
